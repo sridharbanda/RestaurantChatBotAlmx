@@ -1,0 +1,317 @@
+[
+  {
+    "restaurant_id": "R001",
+    "name": "Deccan Spice House",
+    "cuisine": "Indian",
+    "location": "Hyderabad",
+    "address": "Jubilee Hills, Hyderabad",
+    "rating": 4.6,
+    "price_range": 2,
+    "vegetarian": true,
+    "contact": "+91-90000-10001",
+    "menu": [
+      {
+        "name": "Paneer Tikka",
+        "price": 260
+      },
+      {
+        "name": "Veg Biryani",
+        "price": 280
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R002",
+    "name": "Little Napoli",
+    "cuisine": "Italian",
+    "location": "Hyderabad",
+    "address": "Banjara Hills, Hyderabad",
+    "rating": 4.4,
+    "price_range": 3,
+    "vegetarian": true,
+    "contact": "+91-90000-10002",
+    "menu": [
+      {
+        "name": "Margherita Pizza",
+        "price": 350
+      },
+      {
+        "name": "Penne Arrabbiata",
+        "price": 320
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R003",
+    "name": "Wok & Willow",
+    "cuisine": "Chinese",
+    "location": "Hyderabad",
+    "address": "Hitech City, Hyderabad",
+    "rating": 4.2,
+    "price_range": 2,
+    "vegetarian": false,
+    "contact": "+91-90000-10003",
+    "menu": [
+      {
+        "name": "Veg Hakka Noodles",
+        "price": 240
+      },
+      {
+        "name": "Chilli Chicken",
+        "price": 310
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R004",
+    "name": "Taco Terrace",
+    "cuisine": "Mexican",
+    "location": "Hyderabad",
+    "address": "Gachibowli, Hyderabad",
+    "rating": 4.1,
+    "price_range": 2,
+    "vegetarian": true,
+    "contact": "+91-90000-10004",
+    "menu": [
+      {
+        "name": "Bean Tacos",
+        "price": 220
+      },
+      {
+        "name": "Veg Burrito Bowl",
+        "price": 290
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R005",
+    "name": "Sakura Bento",
+    "cuisine": "Japanese",
+    "location": "Hyderabad",
+    "address": "Madhapur, Hyderabad",
+    "rating": 4.5,
+    "price_range": 3,
+    "vegetarian": false,
+    "contact": "+91-90000-10005",
+    "menu": [
+      {
+        "name": "Vegetable Sushi",
+        "price": 380
+      },
+      {
+        "name": "Miso Ramen",
+        "price": 420
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R006",
+    "name": "Olive Grove Kitchen",
+    "cuisine": "Mediterranean",
+    "location": "Bengaluru",
+    "address": "Indiranagar, Bengaluru",
+    "rating": 4.7,
+    "price_range": 3,
+    "vegetarian": true,
+    "contact": "+91-90000-10006",
+    "menu": [
+      {
+        "name": "Falafel Plate",
+        "price": 330
+      },
+      {
+        "name": "Hummus and Pita",
+        "price": 240
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R007",
+    "name": "Masala Metro",
+    "cuisine": "Indian",
+    "location": "Bengaluru",
+    "address": "Koramangala, Bengaluru",
+    "rating": 4.3,
+    "price_range": 1,
+    "vegetarian": true,
+    "contact": "+91-90000-10007",
+    "menu": [
+      {
+        "name": "Masala Dosa",
+        "price": 100
+      },
+      {
+        "name": "Veg Thali",
+        "price": 190
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R008",
+    "name": "Pasta Post",
+    "cuisine": "Italian",
+    "location": "Bengaluru",
+    "address": "Whitefield, Bengaluru",
+    "rating": 4.0,
+    "price_range": 2,
+    "vegetarian": true,
+    "contact": "+91-90000-10008",
+    "menu": [
+      {
+        "name": "Pesto Pasta",
+        "price": 310
+      },
+      {
+        "name": "Four Cheese Pizza",
+        "price": 390
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R009",
+    "name": "Dragon Bowl",
+    "cuisine": "Chinese",
+    "location": "Chennai",
+    "address": "Anna Nagar, Chennai",
+    "rating": 4.2,
+    "price_range": 2,
+    "vegetarian": false,
+    "contact": "+91-90000-10009",
+    "menu": [
+      {
+        "name": "Vegetable Fried Rice",
+        "price": 230
+      },
+      {
+        "name": "Schezwan Chicken",
+        "price": 320
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R010",
+    "name": "Chennai Curry Leaf",
+    "cuisine": "Indian",
+    "location": "Chennai",
+    "address": "T Nagar, Chennai",
+    "rating": 4.5,
+    "price_range": 1,
+    "vegetarian": true,
+    "contact": "+91-90000-10010",
+    "menu": [
+      {
+        "name": "Idli Sambar",
+        "price": 70
+      },
+      {
+        "name": "South Indian Meals",
+        "price": 160
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R011",
+    "name": "Citrus Mezze",
+    "cuisine": "Mediterranean",
+    "location": "Chennai",
+    "address": "Adyar, Chennai",
+    "rating": 4.1,
+    "price_range": 2,
+    "vegetarian": true,
+    "contact": "+91-90000-10011",
+    "menu": [
+      {
+        "name": "Greek Salad",
+        "price": 250
+      },
+      {
+        "name": "Falafel Wrap",
+        "price": 220
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R012",
+    "name": "Burrito Bay",
+    "cuisine": "Mexican",
+    "location": "Bengaluru",
+    "address": "HSR Layout, Bengaluru",
+    "rating": 4.4,
+    "price_range": 2,
+    "vegetarian": true,
+    "contact": "+91-90000-10012",
+    "menu": [
+      {
+        "name": "Paneer Burrito",
+        "price": 280
+      },
+      {
+        "name": "Corn Salsa Tacos",
+        "price": 210
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R013",
+    "name": "Tokyo Table",
+    "cuisine": "Japanese",
+    "location": "Hyderabad",
+    "address": "Jubilee Hills, Hyderabad",
+    "rating": 4.0,
+    "price_range": 3,
+    "vegetarian": false,
+    "contact": "+91-90000-10013",
+    "menu": [
+      {
+        "name": "Vegetable Ramen",
+        "price": 360
+      },
+      {
+        "name": "Teriyaki Chicken Bowl",
+        "price": 440
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R014",
+    "name": "Green Spoon",
+    "cuisine": "Mediterranean",
+    "location": "Chennai",
+    "address": "T Nagar, Chennai",
+    "rating": 4.6,
+    "price_range": 1,
+    "vegetarian": true,
+    "contact": "+91-90000-10014",
+    "menu": [
+      {
+        "name": "Quinoa Veg Bowl",
+        "price": 190
+      },
+      {
+        "name": "Roasted Vegetable Salad",
+        "price": 160
+      }
+    ]
+  },
+  {
+    "restaurant_id": "R015",
+    "name": "Spice Route Social",
+    "cuisine": "Indian",
+    "location": "Bengaluru",
+    "address": "MG Road, Bengaluru",
+    "rating": 4.8,
+    "price_range": 3,
+    "vegetarian": false,
+    "contact": "+91-90000-10015",
+    "menu": [
+      {
+        "name": "Paneer Lababdar",
+        "price": 320
+      },
+      {
+        "name": "Chicken Chettinad",
+        "price": 390
+      }
+    ]
+  }
+]

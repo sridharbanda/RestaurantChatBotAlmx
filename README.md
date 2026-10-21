@@ -10,6 +10,38 @@
 
 API docs: http://localhost:8000/docs
 
+## Architecture
+The application consists of 3 distinct components:
+- `backend/`: FastAPI application, LangChain chat agent, session management, and MCP client bridge.
+- `frontend/`: React + Vite interactive UI for chatting and discovering restaurants.
+- `mcp_server/`: Standalone Model Context Protocol (MCP) server providing restaurant tools, resources, and prompts.
+
+## MCP Server (Model Context Protocol)
+The restaurant tools and catalog are available via the standalone `mcp_server` folder:
+- **Stdio transport (Claude Desktop / Cursor / Antigravity):**
+  ```bash
+  cd mcp_server
+  python server.py
+  # or
+  python -m mcp_server
+  ```
+- **SSE transport (Web / Remote):**
+  Accessible under `/mcp/sse` when the FastAPI backend is running (`http://localhost:8000/mcp/sse`).
+
+Available MCP tools:
+- `search_restaurants`
+- `get_restaurant_details`
+- `get_restaurant_menu`
+- `find_vegetarian_restaurants`
+- `filter_restaurants_by_rating`
+- `recommend_restaurants`
+- `compare_restaurants`
+- `get_restaurant_contact`
+
+Available MCP resources:
+- `restaurants://catalog`
+- `restaurants://{restaurant_id}`
+
 ## Run frontend
 1. In another terminal: `cd frontend`
 2. `npm install`

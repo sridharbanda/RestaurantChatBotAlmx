@@ -5,14 +5,15 @@ from pydantic import BaseModel, Field
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.messages import SystemMessage, HumanMessage, AIMessage, ToolMessage
-from .tools import TOOLS
+
+from .mcp_client import get_mcp_tool_schemas, execute_mcp_tool, get_mcp_tools_metadata
 
 load_dotenv()
 app = FastAPI(title="TableTalk Restaurant Chatbot")
 origins = [x.strip() for x in os.getenv("ALLOWED_ORIGINS","http://localhost:5173").split(",") if x.strip()]
 app.add_middleware(CORSMiddleware, allow_origins=origins, allow_methods=["*"], allow_headers=["*"])
+
 sessions = {}
-by_name = {t.name:t for t in TOOLS}
 
 SYSTEM_PROMPT = (
     "You are TableTalk, a specialized restaurant assistant. "
@@ -47,39 +48,42 @@ def health():
     return {"status":"ok"}
 
 @app.get("/tools")
-def list_tools():
-    return [{"name":t.name,"description":t.description} for t in TOOLS]
+async def list_tools():
+    return await get_mcp_tools_metadata()
 
 @app.post("/chat")
-def chat(req: ChatRequest):
+async def chat(req: ChatRequest):
     api_key = os.getenv("GOOGLE_API_KEY")
     if not api_key:
         raise HTTPException(503, "Set GOOGLE_API_KEY in backend/.env")
     sid = req.session_id or str(uuid.uuid4())
     history = sessions.setdefault(sid, [])
-    model = ChatGoogleGenerativeAI(model=os.getenv("LLM_MODEL","gemini-2.5-flash"), google_api_key=api_key, temperature=0.2).bind_tools(TOOLS)
+    tool_schemas = await get_mcp_tool_schemas()
+    model = ChatGoogleGenerativeAI(
+        model=os.getenv("LLM_MODEL", "gemini-2.5-flash"),
+        google_api_key=api_key,
+        temperature=0.2
+    ).bind_tools(tool_schemas)
+
     msgs = [SystemMessage(content=SYSTEM_PROMPT), *history, HumanMessage(content=req.message)]
     calls_used, result_restaurants = [], []
     try:
         for _ in range(6):
-            ai = model.invoke(msgs); msgs.append(ai)
-            calls = getattr(ai,"tool_calls",[]) or []
+            ai = await model.ainvoke(msgs)
+            msgs.append(ai)
+            calls = getattr(ai, "tool_calls", []) or []
             if not calls:
                 answer = extract_text(ai.content)
                 sessions[sid] = (history + [HumanMessage(content=req.message), AIMessage(content=answer)])[-20:]
-                return {"response":answer,"session_id":sid,"restaurants":result_restaurants,"tool_calls":calls_used}
+                return {"response": answer, "session_id": sid, "restaurants": result_restaurants, "tool_calls": calls_used}
             for call in calls:
-                name, args = call["name"], call.get("args",{})
-                try:
-                    result = by_name[name].invoke(args)
-                    calls_used.append({"tool_name":name,"status":"success"})
-                    if isinstance(result,list): result_restaurants.extend(x for x in result if isinstance(x,dict) and "restaurant_id" in x)
-                    elif isinstance(result,dict) and "restaurant_id" in result: result_restaurants.append(result)
-                except Exception as exc:
-                    result = {"error":str(exc)}
-                    calls_used.append({"tool_name":name,"status":"error"})
-                msgs.append(ToolMessage(content=json.dumps(result,ensure_ascii=False,default=str),tool_call_id=call["id"]))
-        raise HTTPException(500,"Tool-call limit reached. Try a shorter question.")
+                name, args = call["name"], call.get("args", {})
+                content_str, is_error, found_restaurants = await execute_mcp_tool(name, args)
+                status = "error" if is_error else "success"
+                calls_used.append({"tool_name": name, "status": status})
+                result_restaurants.extend(found_restaurants)
+                msgs.append(ToolMessage(content=content_str, tool_call_id=call["id"]))
+        raise HTTPException(500, "Tool-call limit reached. Try a shorter question.")
     except HTTPException:
         raise
     except Exception as exc:

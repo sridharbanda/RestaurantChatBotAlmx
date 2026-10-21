@@ -30,8 +30,9 @@ else:
     SERVER_PYTHON = sys.executable
 
 
+SERVER_PYTHON = Path(SERVER_PYTHON)
+
 if not SERVER_PYTHON.exists():
-    # Useful for environments where both components share Python.
     SERVER_PYTHON = Path(sys.executable)
 
 print("Server file:", SERVER_FILE)
